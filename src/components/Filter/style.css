@@ -1,0 +1,7 @@
+/* Filter 全体 */
+.filter-container {
+    margin-top: 16px; /* 上との空間を確保 */
+    display: flex;
+    gap: 12px;
+    justify-content: center; /* 中央寄せ（好みによって変更） */
+}

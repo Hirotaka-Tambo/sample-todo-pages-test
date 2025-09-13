@@ -1,0 +1,135 @@
+/* TaskList のベース */
+.task-list {
+    list-style: none; /* デフォルトの丸を消す */
+    padding: 0;
+    margin: 20px 0;
+}
+
+/* 各タスク行 */
+.task-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f9f9f9;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.task-list li:hover {
+    background: #f1f1f1;
+}
+
+/* 削除ボタン */
+.task-list button {
+    background: #ff5c5c;
+    border: none;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.task-list button:hover {
+    background: #e04a4a;
+}
+
+/* 優先度 */
+.priority {
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 8px;
+}
+
+.priority.高 {
+    color: white;
+    background-color: #e74c3c; /* 赤 */
+}
+
+.priority.中 {
+    color: white;
+    background-color: #f39c12; /* オレンジ */
+}
+
+.priority.低 {
+    color: white;
+    background-color: #2ecc71; /* 緑 */
+}
+
+
+/* タスク名 */
+.task-text {
+    margin-left: 8px;
+    margin-right: 10px;
+    flex: 1;
+    font-size: 1rem;
+    color: #333;
+    word-break: break-word;
+}
+.task-text.done {
+    text-decoration: line-through;
+    color: #888;
+}
+
+/* タスクカテゴリ*/
+.tag-label.仕事 { 
+    background-color: #3498db; color: white; padding: 2px 6px; border-radius: 4px; 
+}
+
+.tag-label.学習 { 
+    background-color: #9b59b6; color: white; padding: 2px 6px; border-radius: 4px; 
+}
+
+.tag-label.趣味 { 
+    background-color: #e67e22; color: white; padding: 2px 6px; border-radius: 4px; 
+}
+
+.tag-label.家事 { 
+    background-color: #1abc9c; color: white; padding: 2px 6px; border-radius: 4px; 
+}
+
+.tag-label.買い物 { 
+    background-color: #f1c40f; color: black; padding: 2px 6px; border-radius: 4px; 
+}
+
+.tag-label.その他 { 
+    background-color: #7f8c8d; color: white; padding: 2px 6px; border-radius: 4px; 
+}
+
+
+/* 締め切り */
+.deadline {
+    margin-left: 12px;
+    margin-right: 8px;
+    color: gray;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
+
+/* 期限切れのタスク */
+.deadline.overdue {
+    color: red;
+    font-weight: bold;
+}
+
+
+/* リセットボタン */
+.reset-btn {
+    display: block;
+    margin: 20px auto 0;
+    background: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: background 0.3s;
+}
+
+.reset-btn:hover {
+    background: #005fcc;
+}

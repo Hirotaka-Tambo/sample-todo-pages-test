@@ -1,0 +1,36 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+button{
+  cursor: pointer;
+}
+
+/* App.css */
+
+/* 親要素（カード全体） */
+.app-container {
+  max-width: 1000px;
+  min-width:600px;
+  min-height: 300px;
+  margin: 50px auto; /* 中央寄せ */
+  padding: 50px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* タイトル */
+.app-container h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+
+
