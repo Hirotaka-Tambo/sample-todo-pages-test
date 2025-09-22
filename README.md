@@ -1,3 +1,27 @@
+
+# ディレクトリの構成
+<pre>
+  .
+├── docs
+│   ├── assets
+│   ├── index.html
+│   └── vite.svg
+├── index.html
+├── package-lock.json
+├── package.json
+├── public
+│   └── vite.svg
+├── src
+│   ├── counter.ts
+│   ├── main.ts
+│   ├── style.css
+│   ├── typescript.svg
+│   └── vite-env.d.ts
+├── tsconfig.json
+└── vite.config.ts
+</pre>
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
