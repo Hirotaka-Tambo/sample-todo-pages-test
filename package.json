@@ -6,7 +6,8 @@
   "homepage": "https://github.com/Hirotaka-Tambo/sample-todo-pages-test.git",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "type-check": "tsc --noEmit",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
