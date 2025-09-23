@@ -24,6 +24,7 @@ function App() {
   const [priority,setPriority] = useState<"高" | "中" | "低">("高");
   const [tag,setTag] = useState<string>("仕事");
   const [sortKey,setSortKey] = useState<"priority"|"tag"|"createdAt">("createdAt");
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   
   // フィルター済みタスク
@@ -33,13 +34,18 @@ function App() {
     if (filter === "Done") return task.done;
     return true;
   });
+
+  // 検索でのフィルタリング
+  const searchdTasks = filteredTasks.filter((task)=>{
+    return task.text.toLowerCase().includes(searchTerm.toLowerCase());
+  });
   
   // フィルター後のタスクのソート
   // ソートは元のデータを上書きしてしまうので、相剋を起こさないように個別で変数を設定する
 　// tagは配列の順番を明示的に設定する
   const tagOrder = ["仕事","学習","家事","趣味","買い物","その他"]
 
-  const sortTasks = [...filteredTasks].sort((a,b) =>{
+  const sortTasks = [...searchdTasks].sort((a,b) =>{
     if(sortKey == "createdAt"){
       return a.id - b.id; // 上から制作順
     }
@@ -120,7 +126,6 @@ function App() {
   // モーダルによる更新を反映する関数
   const updateTask = (id: number, newValues: Partial<Task>) => {
     // 編集中のタスク名前と、新しいタスク名の取得
-    const currentTask = tasks.find(task => task.id === id);
     const newText = newValues.text?.trim();
 
     // 新しいタスク名が既存のタスク名と重複していないか確認(newTaskは除外)
@@ -156,6 +161,13 @@ function App() {
         setTag={setTag}
         />
       <div className="utility-bar">
+        <div className="search-and-filter-container">
+        <input
+        type="text"
+        placeholder="タスク名を検索..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        />
         <Filter 
         filter={filter} 
         setFilter={setFilter} 
@@ -166,6 +178,7 @@ function App() {
         todoCount={todoCount}
         doneCount={doneCount}
         />
+        </div>
       </div>
         <TaskList
         tasks={sortTasks}

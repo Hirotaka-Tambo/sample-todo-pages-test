@@ -18,7 +18,6 @@ type Props = {
 const Filter = ({ filter, setFilter, sortKey, setSortKey, totalCount, todoCount, doneCount}: Props) => {
     return (
     <div>
-    <hr></hr>
     <div className="filter-group">
 
     {/*フィルター(All/Todo/Done)の表示*/ }
