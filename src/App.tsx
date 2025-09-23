@@ -22,7 +22,9 @@ function App() {
   const [filter, setFilter] = useState<"All" | "Todo" | "Done">("All");
   const [priority,setPriority] = useState<"高" | "中" | "低">("高");
   const [tag,setTag] = useState<string>("仕事");
+  const [sortKey,setSortKey] = useState<"priority"|"tag"|"createdAt">("createdAt");
 
+  
   // フィルター済みタスク
   const filteredTasks = tasks.filter((task) => {
     if (filter === "All") return true;
@@ -30,6 +32,29 @@ function App() {
     if (filter === "Done") return task.done;
     return true;
   });
+  
+  // フィルター後のタスクのソート
+  // ソートは元のデータを上書きしてしまうので、相剋を起こさないように個別で変数を設定する
+　// tagは配列の順番を明示的に設定する
+  const tagOrder = ["仕事","学習","家事","趣味","買い物","その他"]
+
+  const sortTasks = [...filteredTasks].sort((a,b) =>{
+    if(sortKey == "createdAt"){
+      return a.id - b.id; // 上から制作順
+    }
+    if(sortKey == "priority"){
+      const prioritySort ={"高":3, "中":2, "低":1};
+      return (prioritySort[b.priority || "低"]) - (prioritySort[a.priority || "低"]);
+    }
+    if(sortKey == "tag"){
+      const aIndex = tagOrder.indexOf(a.tag|| "その他");
+      const bIndex = tagOrder.indexOf(b.tag || "その他");
+
+      return aIndex - bIndex;
+  }
+  return 0;
+  });
+
 
   // データの保持を行う関数
   useEffect(() =>{
@@ -50,18 +75,20 @@ function App() {
     }
 
 
-    // 空白の除去
+    // task追加時の空白除去
     if (text.trim() === "") return;
     const newTask: Task = { id: Date.now(), text, done: false, deadline, priority,tag};
     setTasks([...tasks, newTask]);
   };
 
-  // 項目を一つ一つ削除する関数
+
+  // 項目を一つ一つ削除(削除ボタン)
   const deleteTask = (id: number) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
 
-  // 完了後、取り消し線が表示される関数
+
+  // 完了後、取り消し線を表示
   const toggleDone = (id: number) => {
     setTasks(
       tasks.map((task) =>
@@ -90,9 +117,9 @@ function App() {
         tag={tag}
         setTag={setTag}
         />
-        <Filter filter={filter} setFilter={setFilter} />
+        <Filter filter={filter} setFilter={setFilter} sortKey={sortKey} setSortKey={setSortKey} />
         <TaskList
-        tasks={filteredTasks}
+        tasks={sortTasks}
         onDelete={deleteTask}
         onToggleDone={toggleDone}
         onClear = {clearTasks}

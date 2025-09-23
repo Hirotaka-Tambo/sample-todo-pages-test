@@ -32,7 +32,7 @@ const TaskInput = ({ onAddTask,priority,setPriority,tag,setTag }: Props) => {
         <div className="main-input">
             <input
             type="text"
-            placeholder="新しいタスクを入力"
+            placeholder="新規タスク名/期限を入力"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             />

@@ -1,7 +1,24 @@
 /* Filter 全体 */
-.filter-container {
-    margin-top: 16px; /* 上との空間を確保 */
+.filter-group {
     display: flex;
+    flex-direction: column; /*縦*/
     gap: 12px;
-    justify-content: center; /* 中央寄せ（好みによって変更） */
+    justify-content: center; /* 中央寄せ */
+    margin-top: 16px; /* 上との空間 */
+    margin-bottom: 20px;
+}
+
+.filter-container,
+.sort-container{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.filter-container label,
+.sort-container label{
+    display:flex;
+    align-items: center;
+    gap: 5px;
+    cursor:pointer;
 }

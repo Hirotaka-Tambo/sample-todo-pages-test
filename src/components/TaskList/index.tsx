@@ -46,7 +46,7 @@ const TaskList = ({ tasks, onDelete, onToggleDone, onClear }: Props) => {
                 const isOverdue = new Date(task.deadline) < new Date();
                 return(
                 <span className={isOverdue ? "deadline overdue" : "deadline"}>
-                〆切：{task.deadline}
+                締切：{task.deadline}
                 </span>
             )})()}
 
