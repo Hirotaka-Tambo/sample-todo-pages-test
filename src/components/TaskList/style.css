@@ -75,28 +75,29 @@
 }
 
 /* タスクカテゴリ*/
+
 .tag-label.仕事 { 
-    background-color: #3498db; color: white; padding: 2px 6px; border-radius: 4px; 
+    background-color: #3498db; color: white; padding: 2px 6px; margin-right: 4px; border-radius: 4px;
 }
 
 .tag-label.学習 { 
-    background-color: #9b59b6; color: white; padding: 2px 6px; border-radius: 4px; 
+    background-color: #9b59b6; color: white; padding: 2px 6px; margin-right: 4px; border-radius: 4px; 
 }
 
 .tag-label.趣味 { 
-    background-color: #e67e22; color: white; padding: 2px 6px; border-radius: 4px; 
+    background-color: #e67e22; color: white; padding: 2px 6px; margin-right: 4px; border-radius: 4px; 
 }
 
 .tag-label.家事 { 
-    background-color: #1abc9c; color: white; padding: 2px 6px; border-radius: 4px; 
+    background-color: #1abc9c; color: white; padding: 2px 6px; margin-right: 4px; border-radius: 4px; 
 }
 
 .tag-label.買い物 { 
-    background-color: #f1c40f; color: black; padding: 2px 6px; border-radius: 4px; 
+    background-color: #f1c40f; color: black; padding: 2px 6px; margin-right: 4px; border-radius: 4px; 
 }
 
 .tag-label.その他 { 
-    background-color: #7f8c8d; color: white; padding: 2px 6px; border-radius: 4px; 
+    background-color: #7f8c8d; color: white; padding: 2px 6px; margin-right: 4px; border-radius: 4px; 
 }
 
 

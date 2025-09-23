@@ -32,5 +32,12 @@ button{
   font-weight: bold;
 }
 
+/*表示方法*/
+.utility-bar {
+  display: flex;
+  justify-content: center; 
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
 
 

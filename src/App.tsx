@@ -105,6 +105,11 @@ function App() {
   }
   };
 
+  // タスク数の算出
+  const totalTasks = tasks.length;
+  const todoCount = tasks.filter(task => !task.done).length;
+  const doneCount = tasks.filter(task => task.done).length;
+
   
   return (
     <>
@@ -117,7 +122,18 @@ function App() {
         tag={tag}
         setTag={setTag}
         />
-        <Filter filter={filter} setFilter={setFilter} sortKey={sortKey} setSortKey={setSortKey} />
+      <div className="utility-bar">
+        <Filter 
+        filter={filter} 
+        setFilter={setFilter} 
+        sortKey={sortKey} 
+        setSortKey={setSortKey} 
+        
+        totalCount={totalTasks}
+        todoCount={todoCount}
+        doneCount={doneCount}
+        />
+      </div>
         <TaskList
         tasks={sortTasks}
         onDelete={deleteTask}

@@ -8,9 +8,14 @@ type Props = {
     // ソート順
     sortKey: "priority"|"tag"|"createdAt";
     setSortKey: (sort: "priority"|"tag"|"createdAt") => void;
+
+    // 各セクションのtaskの数を表示
+    totalCount: number;
+    todoCount: number;
+    doneCount: number;
 };
 
-const Filter = ({ filter, setFilter, sortKey, setSortKey}: Props) => {
+const Filter = ({ filter, setFilter, sortKey, setSortKey, totalCount, todoCount, doneCount}: Props) => {
     return (
     <div>
     <hr></hr>
@@ -24,7 +29,7 @@ const Filter = ({ filter, setFilter, sortKey, setSortKey}: Props) => {
         checked={filter === "All"}
         onChange={() => setFilter("All")}
         />
-        All
+        All ({totalCount})
         </label>
         <label>
         <input
@@ -32,7 +37,7 @@ const Filter = ({ filter, setFilter, sortKey, setSortKey}: Props) => {
         checked={filter === "Todo"}
         onChange={() => setFilter("Todo")}
         />
-        Todo
+        Todo ({todoCount})
         </label>
         <label>
         <input
@@ -40,7 +45,7 @@ const Filter = ({ filter, setFilter, sortKey, setSortKey}: Props) => {
         checked={filter === "Done"}
         onChange={() => setFilter("Done")}
         />
-        Done
+        Done ({doneCount})
         </label>
     </div>
 
