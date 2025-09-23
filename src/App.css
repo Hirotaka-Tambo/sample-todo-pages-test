@@ -11,6 +11,10 @@ button{
 
 /* App.css */
 
+.outside{
+  background-color: aqua;
+}
+
 /* 親要素（カード全体） */
 .app-container {
   max-width: 1000px;

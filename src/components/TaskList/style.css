@@ -1,4 +1,25 @@
-/* TaskList のベース */
+.task-group{
+    display: flex;
+    flex-direction: column; 
+    gap: 16px;
+    justify-content: center; 
+    margin-top: 16px; 
+    margin-bottom: 20px;
+    background-color: #ffffff; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 12px; 
+    padding: 24px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); 
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-out;;
+}
+
+.task-group:hover{
+    transform: translateY(-4px);
+    transform: translateX(4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+
 .task-list {
     list-style: none; /* デフォルトの丸を消す */
     padding: 0;
@@ -14,12 +35,48 @@
     padding: 10px 14px;
     margin-bottom: 10px;
     border-radius: 8px;
-    transition: background 0.3s;
+    transition: transform 0.2s ease-out, background-color 0.2s ease-out;
 }
 
 .task-list li:hover {
     background: #f1f1f1;
+    transform: translateX(6px);
+    transform: translateY(-6px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
+
+.task-list input[type="checkbox"] {
+    appearance: none; 
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 50%; 
+    cursor: pointer;
+    position: relative;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+    margin-right: 12px;
+}
+
+.task-list input[type="checkbox"]:checked {
+    background-color: #2ecc71; 
+    border-color: #2ecc71;
+}
+
+.task-list input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: translate(-50%, -60%) rotate(45deg);
+}
+
+
 
 /* 削除ボタン */
 .task-list button {

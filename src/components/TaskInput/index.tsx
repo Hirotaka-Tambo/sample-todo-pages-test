@@ -82,7 +82,7 @@ const TaskInput = ({ onAddTask,priority,setPriority,tag,setTag }: Props) => {
             </div>
 
             <div className="category-input">
-                <label>タグ：
+                <label>
                     <select value={tag} onChange={(e) => setTag(e.target.value)}>
                         <option value="仕事">仕事</option>
                         <option value="学習">学習</option>

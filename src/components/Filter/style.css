@@ -1,11 +1,22 @@
-/* Filter 全体 */
-.filter-group {
+.filter-card {
     display: flex;
-    flex-direction: column; /*縦*/
-    gap: 12px;
-    justify-content: center; /* 中央寄せ */
-    margin-top: 16px; /* 上との空間 */
-    margin-bottom: 20px;
+    flex-direction: column; 
+    gap: 16px;
+    justify-content: center; 
+    margin-top: 8px; 
+    margin-bottom: 10px;
+    background-color: #ffffff; 
+    border: 1px solid #e0e0e0; 
+    border-radius: 12px; 
+    padding: 24px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); 
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-out;;
+}
+
+.filter-card:hover{
+    transform: translateY(-4px);
+    transform: translateX(4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
 .filter-container,
@@ -17,8 +28,61 @@
 
 .filter-container label,
 .sort-container label{
-    display:flex;
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    font-size: 14px;
+    display: flex;
     align-items: center;
-    gap: 5px;
-    cursor:pointer;
+    gap: 4px;
+    color: #555;
+    user-select: none;
+}
+
+.filter-container label input[type="radio"],
+.sort-container label input[type="radio"] {
+    display: none;
+}
+
+.filter-container label.checked,
+.sort-container label.checked{
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+    font-weight: bold;
+}
+
+.filter-container label:hover, 
+.sort-container label:hover{
+    background-color: #f0f0f0;
+    border-color: #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-container label.checked:hover,
+.sort-container label.checked:hover{
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.label:hover:not(.checked) {
+    background-color: #f0f0f0;
+    border-color: #ccc;
+}
+
+.label:active {
+    transform: scale(0.98); 
+}
+
+.count {
+    font-size: 12px;
+    opacity: 0.8;
+}
+
+
+.selected .count {
+    opacity: 1;
+    color: #fff;
 }

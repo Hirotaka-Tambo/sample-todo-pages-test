@@ -11,22 +11,13 @@ type Props = {
 
 const TaskList = ({ tasks, onDelete, onToggleDone, onClear, onEdit }: Props) => {
     return (
-    <>
+    <div className="task-group">
     <ul className="task-list">
         {tasks.map((task) => (
         <li 
             key={task.id}
             onClick={() => onEdit(task.id)}
         >
-            {/*taskの状態管理 モーダルには出さない */}
-            <input
-            type="checkbox"
-            checked={task.done}
-            onChange={(e) => {
-                e.stopPropagation();
-                onToggleDone(task.id);
-            }}
-            />
             
             {/*タスクの優先順位*/}
             {task.priority && (
@@ -34,6 +25,16 @@ const TaskList = ({ tasks, onDelete, onToggleDone, onClear, onEdit }: Props) => 
                     {task.priority}
             </span>
             )}
+
+            {/*完了ボタン モーダルには出さない */}
+            <input
+            type="checkbox"
+            checked={task.done}
+            onClick={(e) => {
+                e.stopPropagation();
+                onToggleDone(task.id);
+            }}
+            />
 
             {/*タスクタイトル表示*/}
             <span 
@@ -69,12 +70,12 @@ const TaskList = ({ tasks, onDelete, onToggleDone, onClear, onEdit }: Props) => 
 
     {tasks.length > 0 && (
         <button className ="reset-btn" onClick={onClear} >
-        全てリセットする
+        全てリセット
         </button>
     )}
 
     
-    </>
+    </div>
     );
 };
 

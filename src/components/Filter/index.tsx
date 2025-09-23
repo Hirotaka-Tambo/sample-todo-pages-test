@@ -18,11 +18,11 @@ type Props = {
 const Filter = ({ filter, setFilter, sortKey, setSortKey, totalCount, todoCount, doneCount}: Props) => {
     return (
     <div>
-    <div className="filter-group">
+    <div className="filter-card">
 
     {/*フィルター(All/Todo/Done)の表示*/ }
     <div className="filter-container">
-        <label>
+        <label className={filter === "All" ? "checked" : ""}>
         <input
         type="radio"
         checked={filter === "All"}
@@ -30,7 +30,7 @@ const Filter = ({ filter, setFilter, sortKey, setSortKey, totalCount, todoCount,
         />
         All ({totalCount})
         </label>
-        <label>
+        <label className={filter === "Todo" ? "checked" : ""}>
         <input
         type="radio"
         checked={filter === "Todo"}
@@ -38,7 +38,7 @@ const Filter = ({ filter, setFilter, sortKey, setSortKey, totalCount, todoCount,
         />
         Todo ({todoCount})
         </label>
-        <label>
+        <label className={filter === "Done" ? "checked" : ""}>
         <input
         type="radio"
         checked={filter === "Done"}
@@ -50,7 +50,7 @@ const Filter = ({ filter, setFilter, sortKey, setSortKey, totalCount, todoCount,
 
     {/*ソートの表示 */}
     <div className="sort-container">
-        <label>
+        <label className={sortKey === "createdAt" ? "checked" : ""}>
             <input
             type="radio"
             name="sort"
@@ -59,7 +59,7 @@ const Filter = ({ filter, setFilter, sortKey, setSortKey, totalCount, todoCount,
             />
             作成日時順
         </label>
-        <label>
+        <label className={sortKey === "priority" ? "checked" : ""}>
             <input
             type="radio"
             name="sort"
@@ -68,7 +68,7 @@ const Filter = ({ filter, setFilter, sortKey, setSortKey, totalCount, todoCount,
             />
             優先度順
         </label>
-        <label>
+        <label className={sortKey === "tag" ? "checked" : ""}>
             <input
             type="radio"
             name="sort"
