@@ -40,8 +40,7 @@
 
 .task-list li:hover {
     background: #f1f1f1;
-    transform: translateX(6px);
-    transform: translateY(-6px); 
+    transform: translate(6px,-6px); 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
