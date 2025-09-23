@@ -119,6 +119,21 @@ function App() {
 
   // モーダルによる更新を反映する関数
   const updateTask = (id: number, newValues: Partial<Task>) => {
+    // 編集中のタスク名前と、新しいタスク名の取得
+    const currentTask = tasks.find(task => task.id === id);
+    const newText = newValues.text?.trim();
+
+    // 新しいタスク名が既存のタスク名と重複していないか確認(newTaskは除外)
+  const isDuplication = tasks.some(task => 
+    task.id !== id && task.text === newText
+  );
+
+  if (isDuplication) {
+    alert("このタスク名はすでに存在します。別の名前に変更してください。");
+    return; 
+  }
+
+
   setTasks(
     tasks.map((task) =>
       task.id === id ? { ...task, ...newValues } : task
