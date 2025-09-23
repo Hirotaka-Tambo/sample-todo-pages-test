@@ -42,6 +42,15 @@ function App() {
     priority?:"高"|"中"|"低",
     tag?:string
   ) => {
+    // 既存のタスクとの重複チェック
+    const Duplication = tasks.some(task => task.text === text.trim());
+    if(Duplication){
+      alert("既存のタスク名と重複しています");
+      return;
+    }
+
+
+    // 空白の除去
     if (text.trim() === "") return;
     const newTask: Task = { id: Date.now(), text, done: false, deadline, priority,tag};
     setTasks([...tasks, newTask]);
