@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import TaskInput from "./components/TaskInput";
 import TaskList from "./components/TaskList";
 import Filter from "./components/Filter";
+import TaskEditModal from "./components/TaskEditModal";
 
 export type Task = {
   id: number;
@@ -93,7 +94,7 @@ function App() {
   };
 
 
-  // 完了後、取り消し線を表示
+  // 完了後、取り消し線を表示する関数
   const toggleDone = (id: number) => {
     setTasks(
       tasks.map((task) =>
@@ -110,7 +111,23 @@ function App() {
   }
   };
 
-  
+  // モーダル系統の関数
+  // 編集の際のタスク(ID)を保持する関数(表示しない時はnull)
+  const [editingTaskId,setEditingTaskId] = useState<number | null>(null);
+  // 編集中(モーダル上)のタスクを取得
+  const editingTask = tasks.find((task => task.id === editingTaskId));
+
+  // モーダルによる更新を反映する関数
+  const updateTask = (id: number, newValues: Partial<Task>) => {
+  setTasks(
+    tasks.map((task) =>
+      task.id === id ? { ...task, ...newValues } : task
+    )
+  );
+  // 編集が完了したら、editingTaskIdをリセット
+  setEditingTaskId(null);
+};
+
   
   return (
     <>
@@ -139,9 +156,17 @@ function App() {
         tasks={sortTasks}
         onDelete={deleteTask}
         onToggleDone={toggleDone}
+        onEdit={setEditingTaskId}
         onClear = {clearTasks}
       />
       </div>
+      {editingTask && (
+    <TaskEditModal
+      task={editingTask}
+      onUpdate={updateTask}
+      onClose={() => setEditingTaskId(null)}
+    />
+  )}
     </>
   );
 }
