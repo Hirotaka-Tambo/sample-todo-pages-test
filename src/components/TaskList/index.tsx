@@ -6,18 +6,26 @@ type Props = {
     onDelete: (id: number) => void;
     onToggleDone: (id: number) => void;
     onClear: () => void;
+    onEdit: (id:number) => void;
 };
 
-const TaskList = ({ tasks, onDelete, onToggleDone, onClear }: Props) => {
+const TaskList = ({ tasks, onDelete, onToggleDone, onClear, onEdit }: Props) => {
     return (
     <>
     <ul className="task-list">
         {tasks.map((task) => (
-        <li key={task.id}>
+        <li 
+            key={task.id}
+            onClick={() => onEdit(task.id)}
+        >
+            {/*taskの状態管理 モーダルには出さない */}
             <input
             type="checkbox"
             checked={task.done}
-            onChange={() => onToggleDone(task.id)}
+            onChange={(e) => {
+                e.stopPropagation();
+                onToggleDone(task.id);
+            }}
             />
             
             {/*タスクの優先順位*/}
@@ -50,7 +58,11 @@ const TaskList = ({ tasks, onDelete, onToggleDone, onClear }: Props) => {
                 </span>
             )})()}
 
-            <button onClick={() => onDelete(task.id)}>削除</button>
+            {/*削除ボタン モーダルには出さない */}
+            <button onClick={(e) => {
+                e.stopPropagation();
+                onDelete(task.id)
+            }}>削除</button>
         </li>
     ))}
     </ul>
