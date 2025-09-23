@@ -81,6 +81,11 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
+  // タスク数の算出
+  const totalTasks = tasks.length;
+  const todoCount = tasks.filter(task => !task.done).length;
+  const doneCount = tasks.filter(task => task.done).length;
+
 
   // 項目を一つ一つ削除(削除ボタン)
   const deleteTask = (id: number) => {
@@ -105,11 +110,7 @@ function App() {
   }
   };
 
-  // タスク数の算出
-  const totalTasks = tasks.length;
-  const todoCount = tasks.filter(task => !task.done).length;
-  const doneCount = tasks.filter(task => task.done).length;
-
+  
   
   return (
     <>
