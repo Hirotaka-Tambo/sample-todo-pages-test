@@ -2,38 +2,39 @@
 ├── README.md
 ├── directory_tree.txt
 ├── docs
-│   ├── assets
-│   │   ├── index--8d6skM4.js
-│   │   └── index-C1ykJ6UL.css
-│   ├── index.html
-│   └── vite.svg
 ├── eslint.config.js
 ├── index.html
 ├── package-lock.json
 ├── package.json
 ├── public
-│   └── vite.svg
 ├── src
-│   ├── App.css
-│   ├── App.tsx
-│   ├── assets
-│   │   └── react.svg
-│   ├── components
-│   │   ├── Filter
-│   │   │   ├── index.tsx
-│   │   │   └── style.css
-│   │   ├── TaskInput
-│   │   │   ├── index.tsx
-│   │   │   └── style.css
-│   │   └── TaskList
-│   │       ├── index.tsx
-│   │       └── style.css
-│   ├── index.css
-│   ├── main.tsx
-│   └── vite-env.d.ts
 ├── tsconfig.app.json
 ├── tsconfig.json
 ├── tsconfig.node.json
 ├── types
-│   └── vite-plugin-react.d.ts
 └── vite.config.ts
+
+5 directories, 10 files
+src
+├── App.css
+├── App.tsx
+├── assets
+│   └── react.svg
+├── components
+│   ├── Filter
+│   │   ├── index.tsx
+│   │   └── style.css
+│   ├── TaskEditModal
+│   │   ├── index.tsx
+│   │   └── style.css
+│   ├── TaskInput
+│   │   ├── index.tsx
+│   │   └── style.css
+│   └── TaskList
+│       ├── index.tsx
+│       └── style.css
+├── index.css
+├── main.tsx
+└── vite-env.d.ts
+
+7 directories, 14 files
