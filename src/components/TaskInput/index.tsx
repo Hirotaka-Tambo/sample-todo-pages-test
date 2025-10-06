@@ -1,16 +1,19 @@
 import {useState} from "react";
 import "./style.css";
+import type { PriorityType, TagType } from "../../types/type";
+import { TAG_OPTIONS } from "../../constants";
 
 type Props = {
-    onAddTask:(text:string,deadline?:string, 
-    priority?: "高" | "中" | "低",
-    tag?:string
-    )=> void;
-    priority: "高" | "中" | "低";
-    setPriority: (priority: "高" | "中" | "低") => void;
-    tag:string;
-    setTag:(tag:string) =>void;
-
+    onAddTask: (
+    text: string,
+    deadline?: string,
+    priority?: PriorityType,
+    tag?: TagType
+    ) => void;
+    priority: PriorityType;
+    setPriority: (priority: PriorityType) => void;
+    tag: TagType;
+    setTag: (tag: TagType) => void;
 };
 
 const TaskInput = ({ onAddTask,priority,setPriority,tag,setTag }: Props) => {
@@ -19,8 +22,7 @@ const TaskInput = ({ onAddTask,priority,setPriority,tag,setTag }: Props) => {
 
     const handleAdd = (e:React.FormEvent) => {
         e.preventDefault();
-        if(input.trim() === "")return;
-        onAddTask(input, deadline ? deadline:undefined,priority,tag);
+        onAddTask(input, deadline || undefined, priority, tag);
         setInput("");
         setDeadline("");
         setPriority("高");
@@ -45,52 +47,33 @@ const TaskInput = ({ onAddTask,priority,setPriority,tag,setTag }: Props) => {
         </div>
         
         <div className="sub-input">
-            <div className="priority-input">
-                <label>
-                    <input
-                    type="radio"
-                    name="priority"
-                    value="高"
-                    checked={priority === "高"}
-                    onChange={() => setPriority("高")}
+            {/* 優先度選択 */}
+        <div className="priority-input">
+            {(["高", "中", "低"] as const).map((level) => (
+            <label key={level}>
+                <input
+                type="radio"
+                name="priority"
+                value={level}
+                checked={priority === level}
+                onChange={() => setPriority(level)}
                 />
-                    <span className="high">高</span>
-                </label>
-            
-                <label>
-                    <input
-                    type="radio"
-                    name="priority"
-                    value="中"
-                    checked={priority === "中"}
-                    onChange={() => setPriority("中")}
-                    />
-                    <span className="medium">中</span>
-                </label>
-            
-                <label>
-                    <input
-                    type="radio"
-                    name="priority"
-                    value="低"
-                    checked={priority === "低"}
-                    onChange={() => setPriority("低")}
-                    />
-                    <span className="low">低</span>
-                </label>
-            
-            </div>
+                <span className={level === "高" ? "high" : level === "中" ? "medium" : "low"}>
+                {level}
+                </span>
+            </label>
+        ))}
+        </div>
 
             <div className="category-input">
                 <label>
-                    <select value={tag} onChange={(e) => setTag(e.target.value)}>
-                        <option value="仕事">仕事</option>
-                        <option value="学習">学習</option>
-                        <option value="趣味">趣味</option>
-                        <option value="家事">家事</option>
-                        <option value="買い物">買い物</option>
-                        <option value="その他">その他</option>
-                    </select>
+                    <select value={tag} onChange={(e) => setTag(e.target.value as TagType)}>
+                        {TAG_OPTIONS.map((option) => (
+                <option key={option} value={option}>
+                    {option}
+                </option>
+            ))}
+                </select>
                 </label>
             </div>
         </div>

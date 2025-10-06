@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import type { Task } from '../../App';
+import type { TagType, Task} from '../../types/type'
 import './style.css';
+import { PRIORITY_OPTIONS, TAG_OPTIONS } from '../../constants';
 
 // Propsの型定義
 type Props = {
@@ -29,8 +30,15 @@ const TaskEditModal: React.FC<Props> = ({ task, onUpdate, onClose }) => {
     onUpdate(task.id, newValues);
     };
 
+    // バックグラウンドを押すことでもモーダルを閉じられるようにする機能
+    const handleOverlayClick = (e:React.MouseEvent<HTMLDivElement>)=>{
+        if(e.target === e.currentTarget){
+            onClose();
+        }
+    }
+
     return (
-    <div className="modal-overlay">
+    <div className="modal-overlay" onClick={handleOverlayClick}>
         <div className="modal-content">
             <h2>タスクを編集</h2>
         
@@ -47,23 +55,31 @@ const TaskEditModal: React.FC<Props> = ({ task, onUpdate, onClose }) => {
         <div className="form-group">
             <label>優先度</label>
           {/* 優先度ラジオボタン */}
-            <div className='priority-radio-group'>
-                <label><input type="radio" value="高" checked={editedPriority === "高"} onChange={() => setEditedPriority("高")} />高</label>
-                <label><input type="radio" value="中" checked={editedPriority === "中"} onChange={() => setEditedPriority("中")} />中</label>
-                <label><input type="radio" value="低" checked={editedPriority === "低"} onChange={() => setEditedPriority("低")} />低</label>
+            <div className="priority-radio-group">
+            {PRIORITY_OPTIONS.map((level) => (
+                <label key={level}>
+                    <input
+                    type="radio"
+                    value={level}
+                    checked={editedPriority === level}
+                    onChange={() => setEditedPriority(level)}
+                />
+                    {level}
+                </label>
+            ))}
             </div>
         </div>
         
         <div className="form-group">
             <label>タグ</label>
           {/* タグの選択UI (仮にドロップダウン) */}
-            <select value={editedTag} onChange={(e) => setEditedTag(e.target.value)}>
-                <option value="仕事">仕事</option>
-                <option value="学習">学習</option>
-                <option value="家事">家事</option>
-                <option value="趣味">趣味</option>
-                <option value="買い物">買い物</option>
-                <option value="その他">その他</option>
+            <select value={editedTag} onChange={(e) => setEditedTag(e.target.value as TagType)}>
+                {TAG_OPTIONS.map ((option)=>(
+                    <option key={option} value={option}>
+                        {option}
+                    </option>
+                )
+                )}
             </select>
         </div>
 
@@ -82,6 +98,7 @@ const TaskEditModal: React.FC<Props> = ({ task, onUpdate, onClose }) => {
             <button onClick={onClose}>閉じる</button>
         </div>
         
+
         </div>
     </div>
     );

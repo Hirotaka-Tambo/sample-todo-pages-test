@@ -1,9 +1,9 @@
 {
   "files": [],
-  "include": ["src","types","vite.config.ts"],
+  "include": ["src", "src/types", "vite.config.ts"],
   "references": [
     { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" },
+    { "path": "./tsconfig.node.json" }
   ],
   "compilerOptions": {
     "outDir": "./dist"
